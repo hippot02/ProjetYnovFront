@@ -1,51 +1,99 @@
-/* client.component.scss */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
 .table-container {
-  max-width: 800px; /* Définir la largeur maximale du tableau */
-  margin: 0 auto; /* Centrer le tableau horizontalement */
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .pagination-buttons {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  align-items: center;
 }
 
 .pagination-button {
-  margin: 0 5px;
+  margin-right: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-
-  th,
-  td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-
-  th {
-    background-color: #f2f2f2;
-  }
-
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-
-  tr:hover {
-    background-color: #ddd;
-  }
+.pagination-button:hover {
+  background-color: #0056b3;
 }
 
-.add-button-container {
+.page-size-select-container {
   display: flex;
-  justify-content: center;
+  align-items: center;
+}
+
+.page-size-select {
+  padding: 8px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+.page-size-select:hover,
+.page-size-select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.add-client-form {
   margin-top: 20px;
 }
 
-.add-button {
-  width: 200px; /* Ajuster la largeur du bouton selon vos préférences */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
 }

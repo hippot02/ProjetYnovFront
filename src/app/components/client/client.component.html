@@ -1,56 +1,63 @@
-<div class="table-container">
-  <table>
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Mail</th>
-        <th>Actif</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let client of getPaginatedClients()">
-        <td>{{ client.nom }}</td>
-        <td>{{ client.prenom }}</td>
-        <td>{{ client.adresseMail }}</td>
-        <td>{{ client.active }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div class="container">
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Mail</th>
+          <th>Actif</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of getPaginatedClients()">
+          <td>{{ client.nom }}</td>
+          <td>{{ client.prenom }}</td>
+          <td>{{ client.adresseMail }}</td>
+          <td>{{ client.active }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="pagination-buttons">
-  <button
-    class="pagination-button mat-raised-button"
-    color="primary"
-    (click)="previousPage()"
-  >
-    Page précédente
-  </button>
-  <button
-    class="pagination-button mat-raised-button"
-    color="primary"
-    (click)="nextPage()"
-  >
-    Page suivante
-  </button>
-</div>
-<!-- Votre tableau et votre pagination ici -->
+  <div class="pagination-controls">
+    <div class="pagination-buttons">
+      <button class="pagination-button" (click)="previousPage()">
+        Page précédente
+      </button>
+      <button class="pagination-button" (click)="nextPage()">
+        Page suivante
+      </button>
+    </div>
+    <div class="page-size-select-container">
+      <label for="pageSizeSelect">Afficher par page:</label>
+      <select
+        id="pageSizeSelect"
+        class="page-size-select"
+        (change)="onPageSizeChange($event)"
+      >
+        <option value="15">15</option>
+        <option value="10">10</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+  </div>
 
-<div class="add-client-form">
-  <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="nom">Nom:</label>
-      <input type="text" id="nom" formControlName="nom" />
-    </div>
-    <div>
-      <label for="prenom">Prénom:</label>
-      <input type="text" id="prenom" formControlName="prenom" />
-    </div>
-    <div>
-      <label for="adresseMail">Adresse Mail:</label>
-      <input type="email" id="adresseMail" formControlName="adresseMail" />
-    </div>
-    <button type="submit">Ajouter</button>
-  </form>
+  <div class="add-client-form">
+    <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" formControlName="nom" />
+      </div>
+      <div class="form-group">
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" formControlName="prenom" />
+      </div>
+      <div class="form-group">
+        <label for="adresseMail">Mail:</label>
+        <input type="email" id="adresseMail" formControlName="adresseMail" />
+      </div>
+      <button type="submit">Ajouter</button>
+    </form>
+  </div>
 </div>

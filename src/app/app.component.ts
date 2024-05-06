@@ -5,7 +5,7 @@ import { ProduitComponent } from './components/produit/produit.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { FactoryTarget } from '@angular/compiler';
 import { FactureComponent } from './components/facture/facture.component';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
