@@ -7,4 +7,4 @@ export interface IClient {
     creationUser: string;
     modificationUser: string;
     active:boolean;
-}
+} 
