@@ -2,6 +2,7 @@ import { IClient } from "./IClient";
 import { IProduit } from "./IProduit";
 
 export interface IFacture {
+    _id?: string;
     client: IClient;
     dateEmission: Date;
     estPayee: boolean;

@@ -1,6 +1,7 @@
 import { IFacture } from "./IFacture";
 
 export interface IProduit {
+    _id?:string;
     nom: string;
     stock: number;
     photo: string;

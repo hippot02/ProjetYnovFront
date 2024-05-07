@@ -1,4 +1,5 @@
 export interface IClient {
+    _id?: string;
     nom: string;
     prenom: string;
     adresseMail:string;
@@ -7,4 +8,5 @@ export interface IClient {
     creationUser: string;
     modificationUser: string;
     active:boolean;
+    
 } 

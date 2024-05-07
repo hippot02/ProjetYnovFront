@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IClient } from '../../../Interfaces/IClient';
+import { IClient } from '../../Interfaces/IClient';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormControl, FormGroup, NgForm, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
@@ -17,7 +17,7 @@ export class ClientComponent {
   clientsPerPage: number = 15;
   clientForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,private apiService: ApiService) { }
+  constructor(private fb: FormBuilder, private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.loadClients();
@@ -26,7 +26,7 @@ export class ClientComponent {
 
   initClientForm(): void {
     this.clientForm = this.fb.group({
-      nom: ['', Validators.required], // Définir les contrôles du formulaire avec FormBuilder
+      nom: ['', Validators.required],
       prenom: ['', Validators.required],
       adresseMail: ['', [Validators.required, Validators.email]]
     });
@@ -61,8 +61,6 @@ export class ClientComponent {
     this.clientsPerPage = parseInt(event.target.value, 10); // Convertir en nombre
     this.currentPage = Math.floor((this.currentPage - 1) * (this.clientsPerPage / this.clients.length)) + 1; // Recalculer la page actuelle en fonction de la nouvelle pagination
   }
-  
-
 
   onSubmit(): void {
     if (this.clientForm.valid) {
@@ -72,9 +70,9 @@ export class ClientComponent {
         adresseMail: this.clientForm.value.adresseMail,
         creatinDate: new Date(),
         modificationDate: new Date(),
-        creationUser: 'admin', 
-        modificationUser: 'admin', 
-        active: true 
+        creationUser: 'admin',
+        modificationUser: 'admin',
+        active: true
       };
 
       this.apiService.createClient(clientData).subscribe(
@@ -91,4 +89,16 @@ export class ClientComponent {
     }
   }
 
+  deleteClient(clientId: string): void {
+    this.apiService.deleteClient(clientId).subscribe(
+      (response) => {
+        console.log('Client supprimé avec succès.');
+        this.loadClients();
+      },
+      (error) => {
+        console.error('Erreur lors de la suppression du client : ', error);
+      }
+    );
+  }
+  
 }
