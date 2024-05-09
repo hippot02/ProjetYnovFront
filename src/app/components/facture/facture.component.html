@@ -1,1 +1,77 @@
-<p>facture works!</p>
+<div class="container">
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date d'émission</th>
+                    <th>Client</th>
+                    <th>Prix</th>
+                    <th>Payée</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let facture of getPaginatedFactures()">
+                    <td>{{ facture.dateEmission }}</td>
+                    <td>{{ facture.client }}</td>
+                    <td>{{ facture.prix }}</td>
+                    <td>{{ facture.estPayee }}</td>
+                    <td>
+                        <button class="action-button edit-button" *ngIf="facture._id" (click)="editFacture(facture)">
+                            Modifier
+                        </button>
+                        <button class="action-button delete-button" *ngIf="facture._id"
+                            (click)="deleteFacture(facture._id)">
+                            Supprimer
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination-controls">
+        <div class="pagination-buttons">
+            <button class="pagination-button" (click)="previousPage()">
+                Page précédente
+            </button>
+            <button class="pagination-button" (click)="nextPage()">
+                Page suivante
+            </button>
+        </div>
+        <div class="page-size-select-container">
+            <label for="pageSizeSelect">Afficher par page:</label>
+            <select id="pageSizeSelect" class="page-size-select" (change)="onPageSizeChange($event)">
+                <option value="15">15</option>
+                <option value="10">10</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="add-facture-form">
+        <form [formGroup]="factureForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="dateEmission">Date d'émission:</label>
+                <input type="date" id="dateEmission" formControlName="dateEmission" />
+            </div>
+            <div class="form-group">
+                <label for="client">Client:</label>
+                <select id="client" formControlName="client">
+                    <option *ngFor="let client of clients" [value]="client._id">{{ client.nom }} {{ client.prenom }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="prix">Prix:</label>
+                <input type="number" id="prix" formControlName="prix" />
+            </div>
+            <div class="form-group">
+                <label for="estPayee">Payée:</label>
+                <input type="checkbox" id="estPayee" formControlName="estPayee" />
+            </div>
+            <button type="submit">{{ editMode ? "Modifier" : "Ajouter" }}</button>
+            <button type="button" (click)="onCancel()">Annuler</button>
+        </form>
+    </div>
+</div>

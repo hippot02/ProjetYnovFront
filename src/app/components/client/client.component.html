@@ -18,18 +18,18 @@
           <td>{{ client.active }}</td>
           <td>
             <button
-              class="action-button delete-button"
-              *ngIf="client._id"
-              (click)="deleteClient(client._id)"
-            >
-              Supprimer
-            </button>
-            <button
               class="action-button edit-button"
               *ngIf="client._id"
               (click)="editClient(client)"
             >
               Modifier
+            </button>
+            <button
+              class="action-button delete-button"
+              *ngIf="client._id"
+              (click)="deleteClient(client._id)"
+            >
+              Supprimer
             </button>
           </td>
         </tr>
