@@ -45,6 +45,20 @@
   background-color: #0056b3;
 }
 
+.action-button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #0056b3;
+}
+
 .page-size-select-container {
   display: flex;
   align-items: center;
@@ -85,15 +99,16 @@ input {
   border-radius: 4px;
 }
 
-button[type="submit"] {
+button {
+  margin-right: 10px;
   padding: 8px 16px;
-  background-color: #28a745;
+  background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-button[type="submit"]:hover {
-  background-color: #218838;
+button:hover {
+  background-color: #0056b3;
 }

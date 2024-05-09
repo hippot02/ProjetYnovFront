@@ -18,11 +18,18 @@
           <td>{{ client.active }}</td>
           <td>
             <button
-              class="delete-button"
+              class="action-button delete-button"
               *ngIf="client._id"
               (click)="deleteClient(client._id)"
             >
               Supprimer
+            </button>
+            <button
+              class="action-button edit-button"
+              *ngIf="client._id"
+              (click)="editClient(client)"
+            >
+              Modifier
             </button>
           </td>
         </tr>
@@ -67,7 +74,8 @@
         <label for="adresseMail">Mail:</label>
         <input type="email" id="adresseMail" formControlName="adresseMail" />
       </div>
-      <button type="submit">Ajouter</button>
+      <button type="submit">{{ editMode ? "Modifier" : "Ajouter" }}</button>
+      <button type="button" (click)="onCancel()">Annuler</button>
     </form>
   </div>
 </div>

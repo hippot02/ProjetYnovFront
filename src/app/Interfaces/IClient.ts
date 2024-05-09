@@ -3,7 +3,7 @@ export interface IClient {
     nom: string;
     prenom: string;
     adresseMail:string;
-    creatinDate: Date;
+    creationDate: Date;
     modificationDate: Date;
     creationUser: string;
     modificationUser: string;
