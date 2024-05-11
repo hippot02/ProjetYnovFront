@@ -6,7 +6,7 @@ export interface IFacture {
     client: IClient;
     dateEmission: Date;
     estPayee: boolean;
-    datePaiement: Date;
+    datePaiement?: Date | null;
     prix: number;
     produit: Array<IProduit>;
     creationDate: Date;

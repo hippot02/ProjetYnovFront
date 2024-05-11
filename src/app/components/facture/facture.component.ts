@@ -2,14 +2,15 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { IFacture } from '../../Interfaces/IFacture';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormControl, FormGroup, NgForm, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { IClient } from '../../Interfaces/IClient';
+import { Observable, map } from 'rxjs';
 
 
 @Component({
   selector: 'app-facture',
   standalone: true,
-  imports: [ReactiveFormsModule, NgFor, NgIf],
+  imports: [ReactiveFormsModule, NgFor, NgIf, CommonModule],
   templateUrl: './facture.component.html',
   styleUrl: './facture.component.scss'
 })
@@ -87,15 +88,6 @@ export class FactureComponent implements OnInit {
   }
 
 
-  getClientName(client: IClient): string {
-    if (client) {
-      return `${client.nom} ${client.prenom}`;
-    } else {
-      return '';
-    }
-  }
-  
-
   onCancel(): void {
     this.factureForm.reset();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -134,10 +126,10 @@ export class FactureComponent implements OnInit {
         creationUser: 'admin',
         modificationUser: 'admin',
         active: true,
-        datePaiement: new Date(),
+        datePaiement: this.factureForm.value.estPayee ? new Date() : null,
         produit: []
       };
-
+  
       if (this.editMode) {
         this.apiService.updateFacture(this.editedFactureId, factureData).subscribe(
           () => {
@@ -165,6 +157,8 @@ export class FactureComponent implements OnInit {
       console.log('Données non valides');
     }
   }
+  
+
 
   deleteFacture(factureId: string): void {
     this.apiService.deleteFacture(factureId).subscribe(

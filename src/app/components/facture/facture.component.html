@@ -7,15 +7,18 @@
                     <th>Client</th>
                     <th>Prix</th>
                     <th>Payée</th>
+                    <th>Date paiement</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let facture of getPaginatedFactures()">
-                    <td>{{ facture.dateEmission }}</td>
+                    <td>{{ facture.dateEmission | date: 'dd/MM/yy' }}</td>
                     <td>{{ facture.client }}</td>
+
                     <td>{{ facture.prix }}</td>
                     <td>{{ facture.estPayee }}</td>
+                    <td>{{ facture.datePaiement | date: 'dd/MM/yy' }}</td>
                     <td>
                         <button class="action-button edit-button" *ngIf="facture._id" (click)="editFacture(facture)">
                             Modifier
