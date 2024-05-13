@@ -7,9 +7,9 @@ import { FactureComponent } from './components/facture/facture.component';
 export const routes: Routes = [
 
     {path: '', component: AccueilComponent},
-    {path: 'produit', component: ProduitComponent},
-    {path: 'client', component: ClientComponent},
-    {path: 'facture', component: FactureComponent}
+    {path: 'produits', component: ProduitComponent},
+    {path: 'clients', component: ClientComponent},
+    {path: 'factures', component: FactureComponent}
 
 
 ];
