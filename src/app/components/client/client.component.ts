@@ -79,7 +79,6 @@ export class ClientComponent {
     this.editMode = true;
     if (client._id !== undefined) {
       this.editedClientId = client._id;
-      console.log('ID du client en cours d\'édition :', this.editedClientId);
       const formElement = this.elementRef.nativeElement.querySelector('.add-client-form');
       if (formElement) {
       formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -124,7 +123,6 @@ export class ClientComponent {
       } else {
         this.apiService.createClient(clientData).subscribe(
           () => {
-            console.log('Client ajouté avec succès.');
             this.clientForm.reset();
             this.loadClients();
           },
@@ -140,7 +138,6 @@ export class ClientComponent {
   deleteClient(clientId: string): void {
     this.apiService.deleteClient(clientId).subscribe(
       (response) => {
-        console.log('Client supprimé avec succès.');
         this.loadClients();
       },
       (error) => {

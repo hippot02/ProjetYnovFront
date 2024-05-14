@@ -137,7 +137,6 @@ export class ProduitComponent implements OnInit {
       } else {
         this.apiService.createProduit(produitData).subscribe(
           () => {
-            console.log('Produit ajouté avec succès.');
             this.produitForm.reset();
             this.loadProduits();
           },
@@ -154,7 +153,6 @@ export class ProduitComponent implements OnInit {
   deleteProduit(produitId: string): void {
     this.apiService.deleteProduit(produitId).subscribe(
       () => {
-        console.log('Produit supprimé avec succès.');
         this.loadProduits();
       },
       (error) => {

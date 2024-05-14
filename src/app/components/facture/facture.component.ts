@@ -114,14 +114,11 @@ export class FactureComponent implements OnInit {
   updatePrice(event: Event): void {
     const selectedProductId = (event.target as HTMLSelectElement)['value'];
     if (selectedProductId) {
-      console.log("Selected product ID:", selectedProductId);
       this.selectedProduct = this.produits.find(p => p._id === selectedProductId);
-      console.log("Selected product:", this.selectedProduct);
       if (this.selectedProduct) {
         this.factureForm.patchValue({
           prix: this.selectedProduct.prix
         });
-        console.log("Updated price:", this.selectedProduct.prix);
       }
     }
   }
@@ -141,7 +138,6 @@ export class FactureComponent implements OnInit {
     this.editMode = true;
     if (facture._id !== undefined) {
       this.editedFactureId = facture._id;
-      console.log('ID de la facture en cours d\'édition :', this.editedFactureId);
       const formElement = this.elementRef.nativeElement.querySelector('.add-facture-form');
       if (formElement) {
         formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -153,10 +149,7 @@ export class FactureComponent implements OnInit {
         estPayee: facture.estPayee,
         produit: facture.produits
       });
-    } else {
-      console.error('L\'ID de la facture est undefined.');
     }
-    console.log(facture.client);
   }
 
   onSubmit(): void {
@@ -189,7 +182,6 @@ export class FactureComponent implements OnInit {
       } else {
         this.apiService.createFacture(factureData).subscribe(
           () => {
-            console.log('Facture ajoutée avec succès.');
             this.factureForm.reset();
             this.loadFactures();
           },
@@ -208,7 +200,6 @@ export class FactureComponent implements OnInit {
   deleteFacture(factureId: string): void {
     this.apiService.deleteFacture(factureId).subscribe(
       (response) => {
-        console.log('Facture supprimée avec succès.');
         this.loadFactures();
       },
       (error) => {
