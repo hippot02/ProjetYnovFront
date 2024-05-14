@@ -7,6 +7,7 @@ import { FactoryTarget } from '@angular/compiler';
 import { FactureComponent } from './components/facture/facture.component';
 import { NgForm, NgModel } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { SpaService } from './services/spa.service';
 
 
 @Component({
@@ -23,10 +24,13 @@ import { NgIf } from '@angular/common';
 })
 export class AppComponent {
   title = 'ProjetYnovFront';
+  section: string = "accueil";
 
-  section: string = 'accueil';
+  constructor(private spaService: SpaService) {
+    this.spaService.currentSection.subscribe(section => this.section = section);
+  }
 
   switchSection(sectionName: string): void {
-    this.section = sectionName;
+    this.spaService.changeSection(sectionName);
   }
 }

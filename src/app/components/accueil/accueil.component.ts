@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { SpaService } from '../../services/spa.service';
 
 @Component({
   selector: 'app-accueil',
@@ -10,4 +11,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class AccueilComponent {
 
+
+  constructor(private spaService: SpaService) {}
+
+  redirectTo(section: string): void {
+    this.spaService.changeSection(section);
+  }
 }
