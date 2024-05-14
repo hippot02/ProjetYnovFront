@@ -37,7 +37,7 @@ export class ApiService {
 
   public getClientById(clientId: string) {
     const url = `${this.apiRoutes.clients}/${clientId}`;
-    return this.http.get(url);
+    return this.http.get(url);  
   }
 
   public updateClient(clientId: string, clientData: IClient) {

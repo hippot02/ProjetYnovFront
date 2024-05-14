@@ -24,13 +24,15 @@ export class FactureComponent implements OnInit {
   currentPage: number = 1;
   facturesPerPage: number = 15;
   produits: IProduit[] = [];
+  selectedProduct: IProduit | undefined;
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private elementRef: ElementRef) { 
     this.factureForm = this.fb.group({
       dateEmission: ['', Validators.required],
       client: ['', Validators.required],
       prix: ['', Validators.required],
-      estPayee: [false]
+      estPayee: [false],
+      produit: ['']
     });
   }
 
@@ -82,6 +84,9 @@ export class FactureComponent implements OnInit {
   loadFactures(): void {
     this.apiService.getFactures().subscribe((data: any) => {
       this.factures = data;
+      this.factures.sort((a: IFacture, b: IFacture) => {
+        return new Date(b.dateEmission).getTime() - new Date(a.dateEmission).getTime();
+      });
     });
   }
 
@@ -96,6 +101,35 @@ export class FactureComponent implements OnInit {
       this.produits = produitData;
     });
   }
+  getClientName(clientId: string): string {
+    const client = this.clients.find(c => c._id === clientId);
+    return client ? `${client.nom} ${client.prenom}` : 'Client inconnu';
+  }
+
+  getProductName(productId: string): string {
+    const product = this.produits.find(p => p._id === productId);
+    return product ? product.nom : 'Produit inconnu';
+  }
+
+  updatePrice(event: Event): void {
+    const selectedProductId = (event.target as HTMLSelectElement)['value'];
+    if (selectedProductId) {
+      console.log("Selected product ID:", selectedProductId);
+      this.selectedProduct = this.produits.find(p => p._id === selectedProductId);
+      console.log("Selected product:", this.selectedProduct);
+      if (this.selectedProduct) {
+        this.factureForm.patchValue({
+          prix: this.selectedProduct.prix
+        });
+        console.log("Updated price:", this.selectedProduct.prix);
+      }
+    }
+  }
+  
+  
+  
+  
+
 
 
   onCancel(): void {
@@ -184,4 +218,4 @@ export class FactureComponent implements OnInit {
   }
 
   
-}
+} 
