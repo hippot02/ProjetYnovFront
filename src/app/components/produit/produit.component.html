@@ -14,7 +14,7 @@
                 <tr *ngFor="let produit of produits">
                     <td>{{ produit.nom }}</td>
                     <td>{{ produit.stock }}</td>
-                    <td>{{ produit.photo }}</td>
+                    <td><img src="{{ produit.photo }}"></td>
                     <td>{{ produit.prix }}</td>
                     <td>
                         <button class="action-button edit-button" *ngIf="produit._id" (click)="editProduit(produit)">
@@ -60,7 +60,7 @@
                 <input type="number" id="stock" formControlName="stock" />
             </div>
             <div class="form-group">
-                <label for="photo">Photo:</label>
+                <label for="photo">Photo (url):</label>
                 <input type="text" id="photo" formControlName="photo" />
             </div>
             <div class="form-group">
