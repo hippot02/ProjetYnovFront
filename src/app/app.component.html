@@ -1,3 +1,26 @@
-<header role="banner">
-    <app-header></app-header>
-</header>
+<nav class="navbar">
+    <div class="navbar-left">
+        <span class="shop-name">Fab's Classic CRUD</span>
+    </div>
+    <div class="navbar-right">
+        <button class="button" (click)="switchSection('accueil')">Accueil</button>
+        <button class="button" (click)="switchSection('clients')">Clients</button>
+        <button class="button" (click)="switchSection('factures')">Factures</button>
+        <button class="button" (click)="switchSection('produits')">Produits</button>
+    </div>
+</nav>
+
+<div *ngIf="section === 'accueil'">
+    <app-accueil></app-accueil>
+</div>
+
+<div *ngIf="section === 'clients'">
+    <app-client></app-client>
+</div>
+
+<div *ngIf="section === 'factures'">
+    <app-facture></app-facture>
+</div>
+<div *ngIf="section === 'produits'">
+    <app-produit></app-produit>
+</div>

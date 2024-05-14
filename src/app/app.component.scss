@@ -1,0 +1,36 @@
+.navbar {
+  background: linear-gradient(to bottom right, #4a90e2, #bc0096);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left {
+  font-size: 1.2rem;
+  color: white;
+}
+.navbar-right {
+  display: flex;
+  gap: 20px;
+}
+
+.shop-name {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.navbar-right .button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-right .button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
