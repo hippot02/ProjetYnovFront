@@ -1,5 +1,5 @@
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -111,4 +111,9 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.max-size-image {
+  max-width: 200px;
+  max-height: 200px;
 }

@@ -8,7 +8,7 @@ export interface IFacture {
     estPayee: boolean;
     datePaiement?: Date | null;
     prix: number;
-    produit: Array<IProduit>;
+    produits: Array<IProduit>;
     creationDate: Date;
     modificationDate: Date;
     creationUser: string;

@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, NgForm, NgModel, ReactiveFormsModu
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { IClient } from '../../Interfaces/IClient';
 import { Observable, map } from 'rxjs';
+import { IProduit } from '../../Interfaces/IProduit';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class FactureComponent implements OnInit {
   clients: IClient[] = [];
   currentPage: number = 1;
   facturesPerPage: number = 15;
+  produits: IProduit[] = [];
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private elementRef: ElementRef) { 
     this.factureForm = this.fb.group({
@@ -35,6 +37,7 @@ export class FactureComponent implements OnInit {
   ngOnInit(): void {
     this.loadFactures();
     this.loadClients();
+    this.loadProduits();
     this.initFactureForm();
   }
 
@@ -43,7 +46,8 @@ export class FactureComponent implements OnInit {
       dateEmission: ['', Validators.required],
       client: ['', Validators.required],
       prix: ['', Validators.required],
-      estPayee: [false]
+      estPayee: [false],
+      produit: ['']
     });
   }
 
@@ -87,6 +91,12 @@ export class FactureComponent implements OnInit {
     });
   }
 
+  loadProduits(): void {
+    this.apiService.getProduits().subscribe((produitData: any) => {
+      this.produits = produitData;
+    });
+  }
+
 
   onCancel(): void {
     this.factureForm.reset();
@@ -106,7 +116,8 @@ export class FactureComponent implements OnInit {
         dateEmission: facture.dateEmission,
         client: facture.client,
         prix: facture.prix,
-        estPayee: facture.estPayee
+        estPayee: facture.estPayee,
+        produit: facture.produits
       });
     } else {
       console.error('L\'ID de la facture est undefined.');
@@ -118,6 +129,7 @@ export class FactureComponent implements OnInit {
     if (this.factureForm.valid) {
       const factureData: IFacture = {
         client: this.factureForm.value.client,
+        produits: [this.factureForm.value.produit],
         dateEmission: this.factureForm.value.dateEmission,
         estPayee: this.factureForm.value.estPayee,
         prix: this.factureForm.value.prix,
@@ -127,7 +139,6 @@ export class FactureComponent implements OnInit {
         modificationUser: 'admin',
         active: true,
         datePaiement: this.factureForm.value.estPayee ? new Date() : null,
-        produit: []
       };
   
       if (this.editMode) {

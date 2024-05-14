@@ -5,6 +5,7 @@
                 <tr>
                     <th>Date d'émission</th>
                     <th>Client</th>
+                    <th>Produit</th>
                     <th>Prix</th>
                     <th>Payée</th>
                     <th>Date paiement</th>
@@ -15,7 +16,7 @@
                 <tr *ngFor="let facture of getPaginatedFactures()">
                     <td>{{ facture.dateEmission | date: 'dd/MM/yy' }}</td>
                     <td>{{ facture.client }}</td>
-
+                    <td>{{ facture.produits }}</td>
                     <td>{{ facture.prix }}</td>
                     <td>{{ facture.estPayee }}</td>
                     <td>{{ facture.datePaiement | date: 'dd/MM/yy' }}</td>
@@ -63,6 +64,12 @@
                 <select id="client" formControlName="client">
                     <option *ngFor="let client of clients" [value]="client._id">{{ client.nom }} {{ client.prenom }}
                     </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="produit">Produit:</label>
+                <select id="produit" formControlName="produit">
+                    <option *ngFor="let produit of produits" [value]="produit._id">{{ produit.nom }}</option>
                 </select>
             </div>
             <div class="form-group">

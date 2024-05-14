@@ -14,7 +14,7 @@
                 <tr *ngFor="let produit of produits">
                     <td>{{ produit.nom }}</td>
                     <td>{{ produit.stock }}</td>
-                    <td><img src="{{ produit.photo }}"></td>
+                    <td><img src="{{ produit.photo }}" class="max-size-image"></td>
                     <td>{{ produit.prix }}</td>
                     <td>
                         <button class="action-button edit-button" *ngIf="produit._id" (click)="editProduit(produit)">
