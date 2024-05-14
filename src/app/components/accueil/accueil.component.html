@@ -1,1 +1,23 @@
-<p>accueil works!</p>
+<div class="welcome-container">
+    <h1>Bienvenue sur Fab's Classic CRUD</h1>
+    <p>Nous sommes ravis de vous accueillir sur notre CRUD en ligne.</p>
+    <div class="card-container">
+        <div class="card">
+            <h2>Clients</h2>
+            <p>Gérez les informations de vos clients.</p>
+            <button class="card-button" routerLink="/clients">Accéder</button>
+        </div>
+        <div class="card">
+            <h2>Factures</h2>
+            <p>Consultez et gérez vos factures.</p>
+            <button class="card-button" routerLink="/factures">Accéder</button>
+        </div>
+        <div class="card">
+            <h2>Produits</h2>
+            <p>Consultez et gérez notre sélection de produits.</p>
+            <button class="card-button" routerLink="/produits">Accéder</button>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
